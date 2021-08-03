@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+if [ $(echo "$1 > 0" | bc) -ne 0 ] && [ $(echo "$1 <= 1" | bc) -ne 0 ]
+then
+	xrandr --output LVDS --brightness $1
+else
+	echo "Number must be beetween 0.1 - 1.0"
+fi

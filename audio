@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+volume=$(pulsemixer --get-volume | cut -d' ' -f 1)
+muteStatus=$(pulsemixer --get-mute)
+
+
+case $BLOCK_BUTTON in
+	1)  if [ $muteStatus == 1 ] ; then
+			pulsemixer --unmute ; muteStatus=0 ; pkill -RTMIN+10 i3blocks
+		else
+			pulsemixer --mute ; muteStatus=1 ;  pkill -RTMIN+10 i3blocks
+		fi ;;
+esac
+
+if [ $muteStatus == 1 ]
+then
+	echo "🔇"
+	exit
+else
+	echo "🔊 $volume"
+fi

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+xrandr --output VGA1 --auto &&
+xrandr --output VGA1 --rotate left --pos 0x0 --output HDMI-2 --auto --pos 768x342 && nitrogen --restore && 
+synergy &

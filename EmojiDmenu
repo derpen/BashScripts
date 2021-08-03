@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cat ~/Scripts/Emoji/EmojiList | dmenu -i -l 20 -fn Monospace-10 | awk -F " " '{print $NF}' | tr -d '\n' | xclip -selection clipboard
+
+notify-send "$(xclip -o -selection clipboard) copied to clipboard."

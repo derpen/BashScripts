@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+source ~/Scripts/BatteryStatus
+
+case $BLOCK_BUTTON in
+	1) pkill -RTMIN+5 i3blocks && notify-send "Current Battery Status" "$BATTERY%, $STATUS";;
+
+esac
+
+if [ $BATTERY -le 15 ]
+then
+	if [ $STATUS != Charging ]
+	then
+		notify-send "🔋 Battery Low! ($BATTERY%)"
+	fi
+elif [ $BATTERY -eq 100 ]
+then
+	if [ $STATUS == Full ]
+	then
+		notify-send "🔋 Battery Full!"
+	fi
+fi

@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+
+BATTERY=$(cat /sys/class/power_supply/BAT0/capacity)
+STATUS=$(cat /sys/class/power_supply/BAT0/status)
+if [ $BATTERY -le 15 ]
+then
+	if [ $STATUS != Charging ]
+	then
+		echo "🔋⚠️$BATTERY%"
+	fi
+fi
+if [ $STATUS == Charging ]
+then
+	echo "🔋⚡$BATTERY%"
+elif [ $BATTERY == 100 ]
+then
+	echo "🔋✅$BATTERY%"
+else
+	echo "🔋$BATTERY%"
+fi

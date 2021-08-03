@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+killall synergyc
+synergyc -f --no-tray --debug INFO --name derpenlaptop --enable-crypto 192.168.100.$1:24800
+

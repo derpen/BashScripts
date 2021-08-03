@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+scanimage --device "utsushi:esci:usb:/sys/devices/pci0000:00/0000:00:10.0/usb5/5-2/5-2:1.0" --format=png --output-file $1.png --progress
+
+
+

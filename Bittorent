@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#case $BLOCK_BUTTON in
+	#1) pkill -RTMIN+5 i3blocks && notify-send "BTT refreshed";;
+#esac
+
+value=$(coinmon -f btt | sed "s/\s*//g ; s/─//g ; s/┼//g ; s/┤//g ; s/┘//g ; s/├//g ; s/└//g ; s/┴//g ; s/┬//g ; s/┐//g ; s/┌//g ; s/│/;/g ; s/^Data.*//g" | grep BTT | awk -F';' '{print $4}' | cut -d'm' -f 2 | grep -Po "^[0-9]*\.[0-9]..." | awk '{print $1 " * 14918"}' | bc | cut -d'.' -f 1 | grep -m1 "")
+
+previous=$(cat ~/.cache/BittorentValue)
+
+if [ -z "$value" ]
+then  
+	echo "🏴‍☠️No Data"
+else
+	if [ $value -lt $previous ]
+	then
+		echo "🏴‍☠️ Rp.$value🔻"
+	elif [ $value -gt $previous ]
+	then
+		echo " 🏴‍☠️ Rp.$value🔺"
+	else
+		echo " 🏴‍☠️ Rp.$value"
+	fi
+fi
+
+echo "$value" > ~/.cache/BittorentValue
+

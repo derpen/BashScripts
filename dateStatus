@@ -1,0 +1,7 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+	1) notify-send "$(cal)" ;;
+esac
+
+date | awk {'print $1, $2, $3, $7, $4'}

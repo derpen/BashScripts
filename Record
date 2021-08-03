@@ -1,0 +1,5 @@
+#!/bin/sh
+
+name=$(date | awk '{print $2,$3,$4}')
+
+killall ffmpeg || ffmpeg -f x11grab -r 25 -s 1366x768 -i :0.0 -vcodec libx264 -pix_fmt yuv420p -preset ultrafast -crf 0 -threads 0 -acodec pcm_s16le -y "$name".mkv
