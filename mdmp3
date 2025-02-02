@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cut -d ';' -f 1 $1 | while IFS= read -r line
+do
+  dmp3 "$line"
+done
